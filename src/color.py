@@ -145,7 +145,7 @@ def compare_data():
         if c.__eq__(combinations[n]):
             print(c.top, c.bottom, combinations[n].top, combinations[n].bottom)
             print("same data occur!")
-            del[c]
+            combinations.remove(c)
 
         n += 1
 
