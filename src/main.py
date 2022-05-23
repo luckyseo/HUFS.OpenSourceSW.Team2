@@ -1,6 +1,6 @@
-import json
+
 from flask import Flask, request, jsonify
-from color import get_combi, get_color_code,color_code_map
+from color import get_combi, get_color_code,combinations,color_code_map
 
 """
 ref  https://velog.io/@jewon119/01.Flask-%EA%B8%B0%EC%B4%88-REST-API-%EA%B5%AC%ED%98%84
@@ -45,7 +45,20 @@ def color_combi():
 
 @app.route("/api/color/list")
 def color_list():
-    return "RETURN_ALL_COLORS_LIST"
+    list_db=[]
+    for c in combinations:
+        list_db.append({"top":c[0], "bottom":c[1]})
+        
+    color_code_db=[]
+    for c in color_code_map:
+        r,g,b= color_code_map[0],color_code_map[1],color_code_map[2]
+        temp = {"name": c, "code":rgb_to_hex(r,g,b)}
+        color_code_db.append(temp)
+    combi_data={
+        "list":list_db,
+        "colorCode":color_code_db,
+    }
+    return jsonify(combi_data)
 
 
 # TODO: Implement color list API Route
