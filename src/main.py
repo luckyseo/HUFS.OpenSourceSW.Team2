@@ -9,9 +9,14 @@ app = Flask(__name__, static_url_path="", static_folder="web/static")
 
 def rgb_to_hex(r,g,b):
     r,g,b = int(r),int(g), int(b)
-    return hex(r)[2:].zfill(2) + hex(g)[2:].zfill(2) + hex(r)[2:].zfill(2)
-
-
+    return hex(r)[2:].zfill(2) + hex(g)[2:].zfill(2) + hex(b)[2:].zfill(2)
+"""
+rgb_to_hex test
+c = color_code_map["RED"]
+r,g,b= c[0],c[1],c[2]
+temp = {"name": "RED", "code":rgb_to_hex(r,g,b)}
+print(temp)
+"""
 @app.route("/")
 def index_page():
     with open("./web/static/index.html", encoding="utf8", mode="r") as idx_file:
@@ -31,7 +36,7 @@ def color_combi():
 
     combi = get_combi(loc, color) #상의 또는 하의 어울리는 color -> list로 리턴
     combi = set(combi)
-   # color_code = get_color_code(combi) #param changed combi -> color (get_color_code 함수가 color를 받습니다)
+   
     color_code_dic=[]
     for c in combi:
         color_code = get_color_code(c)
@@ -54,7 +59,7 @@ def color_list():
     list_db=[]
     for c in combinations:
         list_db.append({"top":c[0], "bottom":c[1]})
-        
+
     color_code_db=[]
     for c in color_code_map:
         r,g,b= color_code_map[0],color_code_map[1],color_code_map[2]
