@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from color import get_combi, get_color_code
 
 app = Flask(__name__, static_url_path="", static_folder="web/static")
@@ -18,6 +18,7 @@ def color_api():
     combi = get_combi(loc, color)
     color_code = get_color_code(combi)
     # Call "get_combi" Function
+    
     return "RESULT_OF_GET_COMBI_WILL_BE_RETURN"
 
 
