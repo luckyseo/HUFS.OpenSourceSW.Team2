@@ -13,8 +13,14 @@ def rgb_to_hex(r,g,b):
 
 
 @app.route("/")
-def index():
+def index_page():
     with open("./web/static/index.html", encoding="utf8", mode="r") as idx_file:
+        return idx_file.read()
+
+
+@app.route("/color")
+def color_page():
+    with open("./web/static/color.html", encoding="utf8", mode="r") as idx_file:
         return idx_file.read()
 
 
